@@ -1,0 +1,9 @@
+keybind = global:cmd+f8=toggle_visibility
+
+keybind = cmd+d=unbind
+keybind = cmd+shift+d=unbind
+keybind = cmd+w=unbind
+keybind = cmd+enter=unbind
+keybind = cmd+a=unbind
+keybind = cmd+t=unbind
+keybind = cmd+q=unbind

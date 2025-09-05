@@ -1,0 +1,19 @@
+theme = Aura
+font-family = Annotation Mono
+
+background-opacity = 1
+background-blur = true
+
+maximize = true
+
+# window-padding-x = 40
+# window-padding-y = 40
+window-decoration = none
+
+# macos-titlebar-style = hidden
+macos-window-shadow = false
+macos-non-native-fullscreen = true
+
+cursor-style = bar
+
+title = "Ghostty"

@@ -1,0 +1,9 @@
+config-file = "./keys"
+config-file = "./appearance"
+
+shell-integration = "bash"
+
+link-url = true
+
+auto-update = "check"
+auto-update-channel = "tip"
