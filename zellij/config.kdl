@@ -1,0 +1,144 @@
+default_shell "bash"
+theme "cyber-noir"
+
+keybinds clear-defaults=true {
+    // In normal mode, use simple keys to switch to the most common modes.
+    normal {
+        bind "a" { SwitchToMode "pane"; MoveFocus "Left"; }
+        bind "s" { SwitchToMode "pane"; }
+        bind "d" { SwitchToMode "pane"; MoveFocus "Right"; }
+
+        bind "w" { SwitchToMode "tab"; }
+
+        bind "e" { SwitchToMode "resize"; }
+
+        bind "z" { SwitchToMode "scroll"; }
+
+        bind "q" { SwitchToMode "session"; }
+
+        // Misc and less-commonly used while situationally useful
+        bind "Super Shift e" { EditScrollback; }
+        bind "Super Shift s" { LaunchOrFocusPlugin "zellij:strider"; }
+    }
+
+    // Pane mode uses a directional, modifier-based schema:
+    // wasd      -> Move Focus
+    // Shift+wasd  -> New Pane
+    // Super+wasd  -> Move Pane
+    pane {
+        // Move Focus
+        bind "d" { MoveFocus "Right"; }
+        bind "a" { MoveFocus "Left"; }
+        bind "s" { MoveFocus "Down"; }
+        bind "w" { MoveFocus "Up"; }
+
+        // Create Panes
+        bind "Shift d" { NewPane "Right"; }
+        bind "Shift a" { NewPane "Left"; }
+        bind "Shift s" { NewPane "Down"; }
+        bind "Shift w" { NewPane "Up"; }
+
+        // Move Panes
+        bind "Super d" { MovePane "Right"; }
+        bind "Super a" { MovePane "Left"; }
+        bind "Super s" { MovePane "Down"; }
+        bind "Super w" { MovePane "Up"; }
+
+        bind "q" { CloseFocus; }
+
+        bind "e" { ToggleFocusFullscreen; }
+
+        bind "c" { TogglePaneEmbedOrFloating; }
+    }
+
+    // Tab mode uses left/right (a/d) for navigation and other keys for actions.
+    tab {
+        bind "e" {
+            NewTab {
+                cwd "~"
+                name "unnamed"
+            }
+        }
+
+        bind "q" { CloseTab; }
+
+        bind "d" { GoToNextTab; }
+        bind "a" { GoToPreviousTab; }
+
+        bind "Super d" { MoveTab "Right"; }
+        bind "Super a" { MoveTab "Left"; }
+        // bind "Super w" { RenameTab; }
+
+        bind "s" { ToggleActiveSyncTab; } // s for "sync"
+    }
+
+    // Resize mode uses wasd for intuitive directional resizing.
+    resize {
+        bind "w" { Resize "Up"; }
+        bind "a" { Resize "Left"; }
+        bind "s" { Resize "Down"; }
+        bind "d" { Resize "Right"; }
+
+        bind "Shift w" { Resize "Increase"; }
+        bind "Shift s" { Resize "Decrease"; }
+    }
+
+    // Scroll mode uses up/down (w/s) with modifiers for speed.
+    // w/s         -> Scroll by line
+    // Shift+w/s   -> Scroll by page
+    // Super+w/s   -> Scroll to top/bottom
+    scroll {
+        bind "w" { ScrollUp; }
+        bind "s" { ScrollDown; }
+
+        bind "Shift w" { PageScrollUp; }
+        bind "Shift s" { PageScrollDown; }
+
+        bind "Super w" { ScrollToTop; }
+        bind "Super s" { ScrollToBottom; }
+    }
+
+    // Session mode uses "d" for detach (safe) and "q" for quit (destructive).
+    session {
+        bind "d" { Detach; }
+        bind "q" { Quit; }
+    }
+
+    shared_except "locked" {
+        bind "F8" { SwitchToMode "locked"; }
+    }
+
+    // quick-nav support for up to 3x3
+    // (still works even if e.g. there are only 3 vertical panes;
+    //  e,d,x will all move focus to the right-most pane)
+    shared_except "pane" "scroll" "tab" {
+        bind "Super q" { MoveFocus "Up";  MoveFocus "Up"; MoveFocus "Left"; MoveFocus "Left"; }
+        bind "Super w" { MoveFocus "Up";  MoveFocus "Up"; MoveFocus "Left"; MoveFocus "Left"; MoveFocus "Right"; }
+        bind "Super e" { MoveFocus "Up";  MoveFocus "Up"; MoveFocus "Right"; MoveFocus "Right"; }
+        bind "Super a" { MoveFocus "Up";  MoveFocus "Up"; MoveFocus "Down"; MoveFocus "Left"; MoveFocus "Left"; }
+        bind "Super s" { MoveFocus "Up";  MoveFocus "Up"; MoveFocus "Down"; MoveFocus "Left"; MoveFocus "Left"; MoveFocus "Right"; }
+        bind "Super d" { MoveFocus "Up";  MoveFocus "Up"; MoveFocus "Down"; MoveFocus "Right"; MoveFocus "Right"; }
+        bind "Super z" { MoveFocus "Down"; MoveFocus "Down";  MoveFocus "Left"; MoveFocus "Left"; }
+        bind "Super x" { MoveFocus "Down"; MoveFocus "Down";  MoveFocus "Left"; MoveFocus "Left"; MoveFocus "Right"; }
+        bind "Super c" { MoveFocus "Down"; MoveFocus "Down";  MoveFocus "Right"; MoveFocus "Right"; }
+    }
+
+    // ---
+    // Locked mode is better framed as "doing stuff in the terminal" mode.
+    //
+    // Useful for mapping in-terminal custom actions
+    //     (using { Run <cmd>; })
+    // ---
+    locked {
+        bind "F8" { SwitchToMode "normal"; }
+    }
+}
+
+ui {
+    // pane_frames {
+        // rounded_corners true
+        // hide_session_name true
+    // }
+}
+
+show_startup_tips false
