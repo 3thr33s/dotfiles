@@ -108,19 +108,17 @@ keybinds clear-defaults=true {
         bind "F8" { SwitchToMode "locked"; }
     }
 
-    // quick-nav support for up to 3x3
-    // (still works even if e.g. there are only 3 vertical panes;
-    //  e,d,x will all move focus to the right-most pane)
+    // quick-nav for panes
     shared_except "pane" "scroll" "tab" {
-        bind "Super q" { MoveFocus "Up";  MoveFocus "Up"; MoveFocus "Left"; MoveFocus "Left"; }
-        bind "Super w" { MoveFocus "Up";  MoveFocus "Up"; MoveFocus "Left"; MoveFocus "Left"; MoveFocus "Right"; }
-        bind "Super e" { MoveFocus "Up";  MoveFocus "Up"; MoveFocus "Right"; MoveFocus "Right"; }
-        bind "Super a" { MoveFocus "Up";  MoveFocus "Up"; MoveFocus "Down"; MoveFocus "Left"; MoveFocus "Left"; }
-        bind "Super s" { MoveFocus "Up";  MoveFocus "Up"; MoveFocus "Down"; MoveFocus "Left"; MoveFocus "Left"; MoveFocus "Right"; }
-        bind "Super d" { MoveFocus "Up";  MoveFocus "Up"; MoveFocus "Down"; MoveFocus "Right"; MoveFocus "Right"; }
-        bind "Super z" { MoveFocus "Down"; MoveFocus "Down";  MoveFocus "Left"; MoveFocus "Left"; }
-        bind "Super x" { MoveFocus "Down"; MoveFocus "Down";  MoveFocus "Left"; MoveFocus "Left"; MoveFocus "Right"; }
-        bind "Super c" { MoveFocus "Down"; MoveFocus "Down";  MoveFocus "Right"; MoveFocus "Right"; }
+
+        // ⌘ && {w|a|s|d}
+        //
+        // "Move the pane focus all the way {up|left|down|right}
+
+        bind "Super w" { MoveFocus "Up";  MoveFocus "Up"; MoveFocus "Down"; MoveFocus "Right"; MoveFocus "Right"; }
+        bind "Super a" { MoveFocus "Down"; MoveFocus "Down";  MoveFocus "Left"; MoveFocus "Left"; }
+        bind "Super s" { MoveFocus "Down"; MoveFocus "Down";  MoveFocus "Left"; MoveFocus "Left"; MoveFocus "Right"; }
+        bind "Super d" { MoveFocus "Down"; MoveFocus "Down";  MoveFocus "Right"; MoveFocus "Right"; }
     }
 
     // ---
