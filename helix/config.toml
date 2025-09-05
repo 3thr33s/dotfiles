@@ -1,0 +1,100 @@
+theme = "focus_nova"
+
+# -----------------------------------------------------------------------------
+
+[keys.normal]
+w = 'move_visual_line_up'
+s = 'move_visual_line_down'
+a = 'move_char_left'
+d = 'move_char_right'
+W = 'select_mode'
+S = '@g'
+A = 'insert_mode'
+D = ['insert_mode', 'move_char_right']
+
+ret = 'command_palette'
+Q = ['extend_to_line_bounds', 'delete_selection_noyank']
+G = 'goto_file_end'
+e = 'change_selection_noyank'
+c = 'change_selection_noyank'
+
+x = 'extend_to_line_bounds'
+X = ['extend_to_line_bounds', 'delete_selection']
+
+q.a = 'insert_mode'
+q.d = ['goto_line_end', 'insert_mode', 'move_char_right']
+q.s = ['add_newline_below', 'move_line_down', 'insert_mode']
+q.w = 'goto_word'
+q.A = ['goto_line_start', 'insert_mode']
+q.D = ['goto_line_end', 'insert_mode', 'move_char_right']
+q.q = 'insert_mode'
+
+g.k = 'goto_line_start'
+
+[keys.select]
+w = 'extend_line_up'
+s = 'extend_line_down'
+a = 'extend_char_left'
+A = 'extend_prev_word_start'
+d = 'extend_char_right'
+D = 'extend_next_word_end'
+x = ['delete_selection_noyank', 'normal_mode']
+X = ['delete_selection', 'normal_mode']
+
+q.q = 'normal_mode'
+q.w = 'goto_word'
+
+e = 'change_selection_noyank'
+c = 'change_selection_noyank'
+
+[keys.insert]
+q.q = 'normal_mode'
+
+# -----------------------------------------------------------------------------
+
+[editor]
+gutters = ["diagnostics"]
+bufferline = "never"
+color-modes = true
+completion-replace = true
+cursorline = true
+default-yank-register = '+'
+trim-final-newlines = true
+trim-trailing-whitespace = true
+end-of-line-diagnostics = "hint"
+popup-border = "all"
+jump-label-alphabet = "qweasdzxc"
+soft-wrap.enable = true
+soft-wrap.max-indent-retain = 0
+soft-wrap.wrap-indicator = ""
+inline-diagnostics.cursor-line = "warning"
+file-picker.hidden = false
+
+[editor.cursor-shape]
+normal = 'bar'
+insert = 'bar'
+select = 'bar'
+
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'<' = '>'
+
+[editor.statusline]
+left = ["spinner", "diagnostics"]
+center = ["file-base-name"]
+right = ["position", "mode"]
+separator = "│"
+mode.normal = "_"
+mode.insert = "+"
+mode.select = "&"
+diagnostics = ["warning", "error"]
+workspace-diagnostics = ["warning", "error"]
+
+[editor.lsp]
+enable = true
+snippets = true
+display-signature-help-docs = false
+
+# -----------------------------------------------------------------------------
